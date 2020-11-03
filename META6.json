@@ -1,0 +1,31 @@
+{
+  "auth": "github:pdf-raku",
+  "authors": [
+    "David Warring"
+  ],
+  "build-depends": [
+  ],
+    "depends": [
+        "HarfBuzz",
+        "Method::Also"
+  ],
+  "description": "binds to the HarfBuzz font shaping library",
+  "license": "Artistic-2.0",
+  "name": "HarfBuzz::Subset",
+  "raku": "6",
+  "provides": {
+    "HarfBuzz::Subset"            : "lib/HarfBuzz/Subset.rakumod",
+    "HarfBuzz::Subset::Input"     : "lib/HarfBuzz/Subset/Input.rakumod",
+    "HarfBuzz::Subset::Raw"       : "lib/HarfBuzz/Subset/Raw.rakumod",
+    "HarfBuzz::Subset::Raw::Defs" : "lib/HarfBuzz/Subset/Raw/Defs.rakumod"
+  },
+  "resources": [
+  ],
+  "source-url": "git://github.com/pdf-raku/HarfBuzz-Subset-raku.git",
+  "tags": [
+    "font"
+  ],
+  "test-depends": [
+  ],
+  "version": "0.0.1"
+}
