@@ -11,7 +11,7 @@ my HarfBuzz::Subset::Input $input .= new: :@unicode;
 my $file = "t/fonts/NimbusRoman-Regular.otf";
 my HarfBuzz::Face $face .= new: :$file;
 my HarfBuzz::Subset $subsetter .= new: :$face, :$input;
-my HarfBuzz::Face $subset = $subsetter();
+my HarfBuzz::Face $subset = $subsetter.subset-face;
 
 is $subset.get-glyph-count, 1 + 'Hello, World!'.ords.unique;
 

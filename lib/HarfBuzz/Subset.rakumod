@@ -6,10 +6,17 @@ use HarfBuzz::Raw;
 use HarfBuzz::Subset::Input;
 use HarfBuzz::Subset::Raw;
 
-has HarfBuzz::Face:D $.face is required;
-has HarfBuzz::Subset::Input:D $.input is required;
+has HarfBuzz::Face $.face;
+has HarfBuzz::Subset::Input $.input .= new;;
 
-method CALL-ME() {
+submethod TWEAK(Str :$file, Blob :$buf, |opts) {
+    $!face //= $!face.new: :file($_) with $file;
+    $!face //= $!face.new: :buf($_) with $buf;
+    die "no face given" without $!face;
+    $!input.set-options: |opts;
+}
+
+method subset-face {
     my hb_face $raw = hb_subset($!face.raw, $!input.raw);
     HarfBuzz::Face.new: :$raw;
 }

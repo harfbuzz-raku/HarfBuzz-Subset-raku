@@ -3,7 +3,11 @@ unit class HarfBuzz::Subset::Input;
 use HarfBuzz::Subset::Raw;
 has hb_subset_input $.raw .= new();
 
-submethod TWEAK(:$drop-hints, :$desubroutinize, :$retain-gids, :$name-legacy, :@unicode) {
+submethod TWEAK(|c) {
+    self.set-options(|c);
+}
+
+method set-options(:$drop-hints, :$desubroutinize, :$retain-gids, :$name-legacy, :@unicode) {
      $!raw.set-drop-hints(.so) with $drop-hints;
      $!raw.set-desubroutinize(.so) with $desubroutinize;
      $!raw.set-retain-gids(.so) with $retain-gids;
