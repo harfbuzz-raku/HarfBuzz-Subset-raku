@@ -7,7 +7,7 @@ use HarfBuzz::Subset::Input;
 use HarfBuzz::Subset::Raw;
 
 has HarfBuzz::Face $.face;
-has HarfBuzz::Subset::Input $.input .= new;;
+has HarfBuzz::Subset::Input $.input handles<drop-tables> .= new;
 
 submethod TWEAK(Str :$file, Blob :$buf, |opts) {
     $!face //= $!face.new: :file($_) with $file;
@@ -20,3 +20,4 @@ method subset-face {
     my hb_face $raw = hb_subset($!face.raw, $!input.raw);
     HarfBuzz::Face.new: :$raw;
 }
+

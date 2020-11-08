@@ -16,6 +16,7 @@
   "provides": {
     "HarfBuzz::Subset"            : "lib/HarfBuzz/Subset.rakumod",
     "HarfBuzz::Subset::Input"     : "lib/HarfBuzz/Subset/Input.rakumod",
+    "HarfBuzz::Subset::Tables"     : "lib/HarfBuzz/Subset/Tables.rakumod",
     "HarfBuzz::Subset::Raw"       : "lib/HarfBuzz/Subset/Raw.rakumod",
     "HarfBuzz::Subset::Raw::Defs" : "lib/HarfBuzz/Subset/Raw/Defs.rakumod"
   },
