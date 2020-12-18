@@ -10,6 +10,7 @@ class hb_subset_input is repr('CPointer') is export {
     method new { create() }
 
     method unicodes(--> hb_set) is native($HB-SUBSET) is symbol('hb_subset_input_unicode_set') {*}
+    method glyphs(--> hb_set) is native($HB-SUBSET) is symbol('hb_subset_input_glyph_set') {*}
     method drop-tables(--> hb_set) is native($HB-SUBSET) is symbol('hb_subset_input_drop_tables_set') {*}
 
     method set-drop-hints(hb_bool) is native($HB-SUBSET) is symbol('hb_subset_input_set_drop_hints') {*}

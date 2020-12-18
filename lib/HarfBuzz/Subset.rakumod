@@ -7,9 +7,9 @@ use HarfBuzz::Subset::Input;
 use HarfBuzz::Subset::Raw;
 
 has HarfBuzz::Face $.face;
-has HarfBuzz::Subset::Input $.input handles<drop-tables> .= new;
+has HarfBuzz::Subset::Input() $.input handles<drop-tables> .= new;
 
-submethod TWEAK(Str :$file, Blob :$buf, |opts) {
+submethod TWEAK(Str :$file, Blob :$buf, :input($), :face($), |opts) {
     $!face //= $!face.new: :file($_) with $file;
     $!face //= $!face.new: :buf($_) with $buf;
     die "no face given" without $!face;
