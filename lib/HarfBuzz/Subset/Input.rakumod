@@ -9,7 +9,7 @@ submethod TWEAK(|c) { self.set-options: |c; }
 
 multi method COERCE(%opts) { self.new: |%opts; }
 
-method set-options(:@unicodes, :@glyphs, :@drop-tables, *%flags) {
+method set-options(:@unicodes, :@glyphs, :@drop-tables, Bool :$hints, Bool :$subroutines, Bool :$retain-gids) {
 
     if @unicodes {
          my $unicode-set = $!raw.unicodes;
@@ -21,24 +21,18 @@ method set-options(:@unicodes, :@glyphs, :@drop-tables, *%flags) {
          $glyph-set.add: $_ for @glyphs;
      }
 
-     self.drop-tables.add: $_ for @drop-tables;
-
-    for %flags.pairs {
-        if .key ~~ 'drop-hints'|'desubroutinize'|'retain-gids'|'name-legacy' {
-            $!raw."set-{.key}"(.value.so);
-        }
-        else {
-            warn "ignoring {.key} option";
-        }
-    }
+    self.drop-tables.add: $_ for @drop-tables;
+    self!set-hints: $_ with $hints;
+    self!set-subroutines: $_ with $subroutines;
+    $!raw.set-retain-gids: $_ with $retain-gids;
 }
 
-method drop-hints is rw {
+method !get-hints { ! $!raw.get-drop-hints } 
+method !set-hints($_) { $!raw.set-drop-hints(!.so); }
+method hints is rw {
     Proxy.new(
-        FETCH => { ? $!raw.get-drop-hints },
-        STORE => -> $, $_ {
-            $!raw.set-drop-hints(.so)
-        }
+        FETCH => { self!get-hints },
+        STORE => -> $, $_ { self!set-hints: $_ }
     );
 }
 
@@ -50,12 +44,12 @@ method drop-tables(Any:D $subset:) {
     }
 }
 
-method desubroutinize is rw {
+method !get-subroutines { ! $!raw.get-desubroutinize }
+method !set-subroutines { $!raw.set-desubroutinize(!.so) }
+method subroutines is rw {
     Proxy.new(
-        FETCH => { ? $!raw.get-desubroutinize },
-        STORE => -> $, $_ {
-            $!raw.set-desubroutinize(.so)
-        }
+        FETCH => { self!get-subroutines },
+        STORE => -> $, $_ { self!set-subroutines: $_ },
     );
 }
 
@@ -64,15 +58,6 @@ method retain-gids is rw {
         FETCH => { ? $!raw.get-retain-gids },
         STORE => -> $, $_ {
             $!raw.set-retain-gids(.so)
-        }
-    );
-}
-
-method name-legacy is rw {
-    Proxy.new(
-        FETCH => { ? $!raw.get-name-legacy },
-        STORE => -> $, $_ {
-            $!raw.set-name-legacy(.so)
         }
     );
 }

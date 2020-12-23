@@ -1,5 +1,5 @@
 use Test;
-plan 5;
+plan 8;
 use HarfBuzz::Face;
 use HarfBuzz::Raw;
 use HarfBuzz::Subset;
@@ -9,6 +9,9 @@ use HarfBuzz::Raw::Defs :&hb-tag-enc, :&hb-tag-dec;
 
 my @unicodes = 'Hello, World!'.ords;
 my HarfBuzz::Subset::Input $input .= new: :@unicodes;
+ok $input.subroutines;
+ok $input.hints;
+nok $input.retain-gids;
 my $file = "t/fonts/NimbusRoman-Regular.otf";
 my HarfBuzz::Face $face .= new: :$file;
 my HarfBuzz::Subset $subsetter .= new: :$face, :$input;
