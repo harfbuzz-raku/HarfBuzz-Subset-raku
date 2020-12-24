@@ -6,3 +6,4 @@ Makefile
 resources
 HarfBuzz-Subset*
 .gitignore
+tmp/
