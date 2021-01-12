@@ -1,25 +1,26 @@
 {
-  "auth": "github:pdf-raku",
+  "auth": "cpan:WARRINGD",
   "authors": [
     "David Warring"
   ],
   "build-depends": [
   ],
-    "depends": [
-        "HarfBuzz",
-        "Method::Also"
+  "depends": [
+    "HarfBuzz",
+    "Method::Also"
   ],
-  "description": "binds to the HarfBuzz font shaping library",
+  "description": "HarfBuzz font subsetting compactor",
   "license": "Artistic-2.0",
   "name": "HarfBuzz::Subset",
-  "raku": "6",
+  "perl": "6.d",
   "provides": {
-    "HarfBuzz::Subset"            : "lib/HarfBuzz/Subset.rakumod",
-    "HarfBuzz::Subset::Input"     : "lib/HarfBuzz/Subset/Input.rakumod",
-    "HarfBuzz::Subset::Tables"     : "lib/HarfBuzz/Subset/Tables.rakumod",
-    "HarfBuzz::Subset::Raw"       : "lib/HarfBuzz/Subset/Raw.rakumod",
-    "HarfBuzz::Subset::Raw::Defs" : "lib/HarfBuzz/Subset/Raw/Defs.rakumod"
+    "HarfBuzz::Subset": "lib/HarfBuzz/Subset.rakumod",
+    "HarfBuzz::Subset::Input": "lib/HarfBuzz/Subset/Input.rakumod",
+    "HarfBuzz::Subset::Raw": "lib/HarfBuzz/Subset/Raw.rakumod",
+    "HarfBuzz::Subset::Raw::Defs": "lib/HarfBuzz/Subset/Raw/Defs.rakumod",
+    "HarfBuzz::Subset::Tables": "lib/HarfBuzz/Subset/Tables.rakumod"
   },
+  "raku": "6",
   "resources": [
   ],
   "source-url": "git://github.com/pdf-raku/HarfBuzz-Subset-raku.git",
@@ -28,5 +29,5 @@
   ],
   "test-depends": [
   ],
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

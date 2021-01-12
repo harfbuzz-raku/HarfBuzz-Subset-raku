@@ -31,7 +31,7 @@ Subsetting is useful in a number of domains, including
 - embedded PDF fonts, and
 - fast loading Web-Fonts (you'll need additional external tools to then package as WOFF or EOT format).
 
-HarfBuzz::Subset Methods
+class HarfBuzz::Subset Methods
 ----
 
 ### new
@@ -46,32 +46,39 @@ HarfBuzz::Subset Methods
 
 ### Blob
 
-The subsetted font. This can be saved to a file with the same extension as the input font (typically `.ttf` or `.otf`) or embedded somehow (for example in a PDF file).
+Binary image of the subsetted font. This can be saved to a file with the same extension as the input font (typically `.ttf` or `.otf`) or embedded somehow (for example in a PDF file).
 
 HarfBuzz::Subset::Input Methods
+---
 
 ### new
 
     method new(
-        UInt :@unicodes,      # unicode code-points
-        UInt :@glyphs,        # glyph identifiers
+        UInt :@unicodes,      # unicode code-points to include
+        UInt :@glyphs,        # glyph identifiers to include
         Str  :@drop-tables,   # additional SFnt tables to drop
         Bool :$hints=True,    # retain font hinting
         Bool :$retain-gids,   # retain glyph identifiers
         Bool :$subroutines=True,
     ) returns HarfBuzz::Subset::Input:D;
 
-See tests for examples
+Creates a font subsetting profile. Only the characters specified in `:@unicodes` and/or the glyph identifiers specified in `:@glyphs` are retained.
 
-### Blob
+### COERCE
 
-Produces a binary image of the subsetted font. This will havve the
-same format as the inout font (OpenType or TrueType).
+    method COERCE( %(
+        :@unicodes, :@glyphs, :@drop-tables,
+        :$hints, :$retain-gids, :$subroutines,
+    ) returns HarfBuzz::Subset::Input:D;
+
+An object can be coerced from a Hash of options.
 
 Installation
 ----
-As of late 2020, HarfBuzz's font subsetting capability is not commonly packaged yet and you'll mostly likely need to build HarfBuzz from source.
+- This module requires at least Rakudo 2020.11.
 
-The HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
+- As of late 2020, HarfBuzz's font subsetting capability is not commonly packaged yet and you'll mostly likely need to build HarfBuzz from source.
+
+- The HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
 
 

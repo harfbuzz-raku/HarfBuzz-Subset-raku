@@ -1,4 +1,4 @@
-unit class HarfBuzz::Subset:ver<0.0.1>;
+unit class HarfBuzz::Subset:ver<0.0.2>;
 
 use HarfBuzz::Face;
 use HarfBuzz::Raw;
