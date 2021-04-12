@@ -73,12 +73,12 @@ Creates a font subsetting profile. Only the characters specified in `:@unicodes`
 
 An object can be coerced from a Hash of options.
 
-Installation
+Installation and Dependencies
 ----
 - This module requires at least Rakudo 2020.11.
 
-- As of late 2020, HarfBuzz's font subsetting capability is not commonly packaged yet and you'll mostly likely need to build HarfBuzz from source.
+- As of late 2020, HarfBuzz's font subsetting capability is not packaged yet. It seems destined to be included with [HarfBuzz 2.8.0+](https://archlinux.org/packages/extra/x86_64/harfbuzz/) releases.
 
-- The HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
+- In the meantime, HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
 
 

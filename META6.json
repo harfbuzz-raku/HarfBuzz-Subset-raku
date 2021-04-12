@@ -6,7 +6,7 @@
   "build-depends": [
   ],
   "depends": [
-    "HarfBuzz",
+    "HarfBuzz:ver<0.0.6+>",
     "Method::Also"
   ],
   "description": "HarfBuzz font subsetting compactor",
