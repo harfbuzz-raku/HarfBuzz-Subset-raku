@@ -1,3 +1,6 @@
+[[Raku HarfBuzz Project]](https://harfbuzz-raku.github.io)
+ / [[HarfBuzz-Subset Module]](https://harfbuzz-raku.github.io/HarfBuzz-Subset-raku)
+
 HarfBuzz-Subset-raku
 =============
 
