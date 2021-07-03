@@ -44,12 +44,14 @@ class HarfBuzz::Subset Methods
        HarfBuzz::Subset::Input :$input()
    ) returns HarfBuzz::Subset:D;
 
-- `:$font` is either a HarfBuzz::Font object or a hash of coercable options.
+- `:$font` is either a HarfBuzz::Font object or a hash of coerceable options.
 - `:$input` is either a HarfBuzz::Subset::Input object or a hash of coerceable options.
 
 ### Blob
 
 Binary image of the subsetted font. This can be saved to a file with the same extension as the input font (typically `.ttf` or `.otf`) or embedded somehow (for example in a PDF file).
+
+HarfBuzz subsetting currently works on TrueType, and OpenType font formats. It also accepts TrueType Collections (typically with file extension `.ttc`). In this case, the converted font will be a simple TrueType font, which should be saved with file extensyion `.ttf`.
 
 HarfBuzz::Subset::Input Methods
 ---
