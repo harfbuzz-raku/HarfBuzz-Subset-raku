@@ -1,0 +1,49 @@
+name: test
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+jobs:
+  raku:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          #- windows-latest
+        raku-version:
+          - 'latest'
+          - '2021.12'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Raku/setup-raku@v1
+        with:
+          raku-version: ${{ matrix.raku-version }}
+      - name: Linux specific setup
+        if: contains(matrix.os, 'ubuntu')
+        run: |
+          ## Requires Debian 11+
+          wget https://github.com/harfbuzz/harfbuzz/releases/download/3.3.1/harfbuzz-3.3.1.tar.xz
+          (tar xf 2.7.4.tar.gz && cd harfbuzz-2.7.4 && ./autogen.sh && make)
+          ##sudo apt-get install -y libharfbuzz-dev
+      - name: macOS specific setup
+        if: contains(matrix.os, 'macOS')
+        run: |
+          brew update
+          ## brew install autoconf automake libtool
+          brew install harfbuzz
+      - name: Install Dependencies
+        run: |
+          zef install --/test App::Prove6
+          zef --deps-only install .
+      - name: Run Tests
+        run: |
+          export LD_LIBRARY_PATH=harfbuzz-2.7.4/src/.libs
+          prove6 -I. t
+          zef install .
