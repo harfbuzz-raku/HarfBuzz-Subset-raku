@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.0.3  2022-02-02T07:00:36+13:00
     - Adjust to the new HarfBuzz v3.0.0+ subset API.
 
 0.0.2  2021-01-13T08:13:52+13:00
