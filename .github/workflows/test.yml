@@ -30,7 +30,7 @@ jobs:
         run: |
           ## Requires Debian 11+
           wget https://github.com/harfbuzz/harfbuzz/releases/download/3.3.1/harfbuzz-3.3.1.tar.xz
-          (tar xfharfbuzz-3.3.1.tar.xz  && cd harfbuzz-3.3.1 && ./autogen.sh && make)
+          (tar xf harfbuzz-3.3.1.tar.xz  && cd harfbuzz-3.3.1 && ./autogen.sh && make)
           ##sudo apt-get install -y libharfbuzz-dev
       - name: macOS specific setup
         if: contains(matrix.os, 'macOS')
