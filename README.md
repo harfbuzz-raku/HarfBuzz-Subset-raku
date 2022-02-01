@@ -83,7 +83,7 @@ Installation and Dependencies
 ----
 - This module requires at least Rakudo 2020.11.
 
-- As of late 2020, HarfBuzz's font subsetting capability is not packaged yet. It seems destined to be included with [HarfBuzz 2.8.0+](https://archlinux.org/packages/extra/x86_64/harfbuzz/) releases.
+- As of early 2022, HarfBuzz's 3.0.0+ font subsetting capability is not packaged yet.
 
 - In the meantime, HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
 
