@@ -1,11 +1,20 @@
 use Test;
-plan 8;
+plan 10;
+use HarfBuzz;
 use HarfBuzz::Face;
 use HarfBuzz::Raw;
 use HarfBuzz::Subset;
 use HarfBuzz::Subset::Input;
 use HarfBuzz::Subset::Raw;
 use HarfBuzz::Raw::Defs :&hb-tag-enc, :&hb-tag-dec;
+constant Min-HarfBuzz-Version = v3.0.0;
+
+my Version $version;
+lives-ok { $version = HarfBuzz.version }, 'got version';
+note "HarfBuzz version is $version (bindings {HarfBuzz::Subset.^ver})";
+
+ok($version >= Min-HarfBuzz-Version, "HarfBuzz version is suppported")
+    or diag "sorry this version of HarfBuzz is not supported ($version < {Min-HarfBuzz-Version})";
 
 my @unicodes = 'Hello, World!'.ords;
 my HarfBuzz::Subset::Input $input .= new: :@unicodes;

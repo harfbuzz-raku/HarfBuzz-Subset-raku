@@ -8,7 +8,8 @@ Description
 -----
 Bindings to the HarfBuzz Subset font subsetting library.
 
-This module is classed as *Experimental*, just because the `harfbuzz-subset` library is not commonly packaged yet, and needs to be built from source.
+This module is classed as *Experimental*, just because a recent HarfBuzz 3.0.0+ library needs to be buily
+with the latest `harfbuzz-subset` library.
 
 Synopsis
 -----
