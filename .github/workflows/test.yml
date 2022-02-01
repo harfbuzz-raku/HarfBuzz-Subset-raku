@@ -40,8 +40,8 @@ jobs:
           brew install harfbuzz
       - name: Install Dependencies
         run: |
-          export LD_LIBRARY_PATH=harfbuzz-3.3.1/src/.libs
           zef install --/test App::Prove6
+          zef --/test install HarfBuzz
           zef --deps-only install .
       - name: Run Tests
         run: |
