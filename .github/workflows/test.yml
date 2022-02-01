@@ -30,7 +30,7 @@ jobs:
         run: |
           ## Requires Debian 11+
           wget https://github.com/harfbuzz/harfbuzz/releases/download/3.3.1/harfbuzz-3.3.1.tar.xz
-          (tar xf 2.7.4.tar.gz && cd harfbuzz-2.7.4 && ./autogen.sh && make)
+          (tar xfharfbuzz-3.3.1.tar.xz  && cd harfbuzz-3.3.1 && ./autogen.sh && make)
           ##sudo apt-get install -y libharfbuzz-dev
       - name: macOS specific setup
         if: contains(matrix.os, 'macOS')
@@ -40,10 +40,11 @@ jobs:
           brew install harfbuzz
       - name: Install Dependencies
         run: |
+          export LD_LIBRARY_PATH=harfbuzz-3.3.1/src/.libs
           zef install --/test App::Prove6
           zef --deps-only install .
       - name: Run Tests
         run: |
-          export LD_LIBRARY_PATH=harfbuzz-2.7.4/src/.libs
+          export LD_LIBRARY_PATH=harfbuzz-3.3.1/src/.libs
           prove6 -I. t
           zef install .
