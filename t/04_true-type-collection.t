@@ -3,8 +3,6 @@ plan 4;
 use HarfBuzz::Face;
 use HarfBuzz::Raw;
 use HarfBuzz::Subset;
-use HarfBuzz::Subset::Raw;
-use HarfBuzz::Raw::Defs :&hb-tag-enc, :&hb-tag-dec;
 
 my @unicodes = 'Hello, World!'.ords;
 my $file = "t/fonts/wqy-microhei.ttc";

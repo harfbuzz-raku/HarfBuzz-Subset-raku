@@ -1,12 +1,9 @@
 use Test;
-plan 10;
+plan 12;
 use HarfBuzz;
 use HarfBuzz::Face;
-use HarfBuzz::Raw;
 use HarfBuzz::Subset;
 use HarfBuzz::Subset::Input;
-use HarfBuzz::Subset::Raw;
-use HarfBuzz::Raw::Defs :&hb-tag-enc, :&hb-tag-dec;
 constant Min-HarfBuzz-Version = v3.0.0;
 
 my Version $version;
@@ -42,4 +39,7 @@ $file.IO.spurt: :bin, $buf;
 lives-ok { $face .= new: :$file; };
 
 is $subset.get-glyph-count, 1 + 'Hello, World!'.ords.unique;
+
+lives-ok { $face .= new: :$file }, 'reloaded face';
+is $face.get-glyph-count, 1 + 'Hello, World!'.ords.unique;
 
