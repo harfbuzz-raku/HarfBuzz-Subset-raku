@@ -8,9 +8,6 @@ Description
 -----
 Bindings to the HarfBuzz Subset font subsetting library.
 
-This module is classed as *Experimental*, just because a recent HarfBuzz 3.0.0+ library needs to be built
-with the latest `harfbuzz-subset` library.
-
 Synopsis
 -----
 
@@ -81,10 +78,17 @@ An object can be coerced from a Hash of options.
 
 Installation and Dependencies
 ----
-- This module requires at least Rakudo 2020.11.
 
-- As of early 2022, HarfBuzz's 3.0.0+ font subsetting capability is not packaged yet.
+### Debian
 
-- In the meantime, HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
+Debian version 12+ is required:
+
+```
+$ cat /etc/debian_version # 12.0 or better
+$ sudo apt install libharfbuzz-dev
+$ zef install HarfBuzz::Subset
+```
+
+On other platforms, HarfBuzz 3.0+ is required. HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
 
 
