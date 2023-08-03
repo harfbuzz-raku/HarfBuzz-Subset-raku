@@ -29,6 +29,7 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         run: |
           ## Requires Debian 11+
+          sudo apt install gtk-doc-tools
           wget https://github.com/harfbuzz/harfbuzz/releases/download/8.1.1/harfbuzz-8.1.1.tar.xz
           (tar xf harfbuzz-8.1.1.tar.xz  && cd harfbuzz-8.1.1 && ./autogen.sh && make)
           ##sudo apt-get install -y libharfbuzz-dev
