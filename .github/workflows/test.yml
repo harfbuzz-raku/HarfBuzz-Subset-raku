@@ -29,8 +29,8 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         run: |
           ## Requires Debian 11+
-          wget https://github.com/harfbuzz/harfbuzz/releases/download/3.3.1/harfbuzz-3.3.1.tar.xz
-          (tar xf harfbuzz-3.3.1.tar.xz  && cd harfbuzz-3.3.1 && ./autogen.sh && make)
+          wget https://github.com/harfbuzz/harfbuzz/releases/download/8.1.1/harfbuzz-8.1.1.tar.xz
+          (tar xf harfbuzz-8.1.1.tar.xz  && cd harfbuzz-8.1.1 && ./autogen.sh && make)
           ##sudo apt-get install -y libharfbuzz-dev
       - name: macOS specific setup
         if: contains(matrix.os, 'macOS')
@@ -45,6 +45,6 @@ jobs:
           zef --deps-only install .
       - name: Run Tests
         run: |
-          export LD_LIBRARY_PATH=harfbuzz-3.3.1/src/.libs
+          export LD_LIBRARY_PATH=harfbuzz-8.1.1/src/.libs
           prove6 -I. t
           zef install .
