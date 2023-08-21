@@ -81,7 +81,7 @@ Installation and Dependencies
 
 ### Debian
 
-Debian version 12+ is required:
+Debian version 12+ is required for sufficiently up-to-date harbuzz packages:
 
 ```
 $ cat /etc/debian_version # 12.0 or better
@@ -89,6 +89,13 @@ $ sudo apt install libharfbuzz-dev
 $ zef install HarfBuzz::Subset
 ```
 
-On other platforms, HarfBuzz 3.0+ is required. HarfBuzz font shaping and subsetting libraries can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
+### MacOS
+
+If `brew search harfbuzz` returns a version of 3.0.0, or better, then
+`brew install harfbuzz` can be used to install the package.
+
+### Other
+
+In general, harfbuzz 3.0.0+ is required for font subsetting. If your platform doesn't have a recent enough packaged version, harfbuzz font can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
 
 
