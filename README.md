@@ -49,7 +49,7 @@ class HarfBuzz::Subset Methods
 
 Binary image of the subsetted font. This can be saved to a file with the same extension as the input font (typically `.ttf` or `.otf`) or embedded somehow (for example in a PDF file).
 
-HarfBuzz subsetting currently works on TrueType, and OpenType font formats. It also accepts TrueType Collections (typically with file extension `.ttc`). In this case, the subsetted font is converted to TrueType format, which should be saved with file extension `.ttf`.
+HarfBuzz subsetting currently works on TrueType, and OpenType font formats. It also accepts TrueType Collections (typically with file extension `.ttc`) and OpenType Collections (file extension `.otc`). In these cases, the subsetted font is unpacked, and should be saved with file extensions `.ttf` or `.otf` respectively.
 
 HarfBuzz::Subset::Input Methods
 ---
