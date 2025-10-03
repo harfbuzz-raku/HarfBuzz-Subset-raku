@@ -13,4 +13,3 @@ method subset-face handles<Blob> {
     my hb_face $raw = hb_subset_or_fail($!face.raw, $!input.raw);
     HarfBuzz::Face.new: :$raw;
 }
-

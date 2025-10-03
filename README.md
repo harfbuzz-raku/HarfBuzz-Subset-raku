@@ -6,7 +6,7 @@ HarfBuzz-Subset-raku
 
 Description
 -----
-Bindings to the HarfBuzz Subset font subsetting library.
+Bindings to the HarfBuzz Subset font-face subsetting library.
 
 Synopsis
 -----
@@ -15,17 +15,17 @@ Synopsis
 use HarfBuzz::Subset;
 
 # face to be subsetted
-my $file = "t/fonts/NimbusRoman-Regular.otf";
-
+my $file = "t/fonts/NimbusRoman.otc";
+my $index = 0; # (optional) select first font-face from the collection
 my @unicodes = 'Hello, World!'.ords;
-my HarfBuzz::Subset $subset .= new: :face{ :$file }, :input{ :@unicodes };
+my HarfBuzz::Subset $subset .= new: :face{ :$file, :$index }, :input{ :@unicodes };
 my Blob() $buf = $subset;
 '/tmp/my-nimbus-subset.otf'.IO.spurt: :bin, $buf;
 ```
 
 Description
 ----
-This module binds to the HarfBuzz library's subsetting capability and allows a font to be compacted to a smaller set of glyphs.
+This module binds to the HarfBuzz library's subsetting capability and allows a font-face to be compacted to a smaller set of glyphs.
 
 Subsetting is useful in a number of domains, including
 
@@ -38,16 +38,16 @@ class HarfBuzz::Subset Methods
 ### new
 
    method new(
-       HarfBuzz::Font() :$font!,
+       HarfBuzz::Face() :$face!,
        HarfBuzz::Subset::Input :$input()
    ) returns HarfBuzz::Subset:D;
 
-- `:$font` is either a HarfBuzz::Font object or a hash of coerceable options.
+- `:$face` is either a HarfBuzz::Face object or a hash of coerceable options.
 - `:$input` is either a HarfBuzz::Subset::Input object or a hash of coerceable options.
 
 ### Blob
 
-Binary image of the subsetted font. This can be saved to a file with the same extension as the input font (typically `.ttf` or `.otf`) or embedded somehow (for example in a PDF file).
+Binary image of the subsetted font-face. This can be saved to a file with the same extension as the input font (typically `.ttf` or `.otf`) or embedded somehow (for example in a PDF file).
 
 HarfBuzz subsetting currently works on TrueType, and OpenType font formats. It also accepts TrueType Collections (typically with file extension `.ttc`) and OpenType Collections (file extension `.otc`). In these cases, the subsetted font is unpacked, and should be saved with file extensions `.ttf` or `.otf` respectively.
 
@@ -99,3 +99,6 @@ If `brew search harfbuzz` returns a version of 3.0.0, or better, then
 In general, harfbuzz 3.0.0+ is required for font subsetting. If your platform doesn't have a recent enough packaged version, harfbuzz font can be downloaded and built from https://github.com/harfbuzz/harfbuzz.
 
 
+### See Also
+
+- [HarfBuzz::Face](https://harfbuzz-raku.github.io/HarfBuzz-raku/HarfBuzz/Face) - An input font-face for shaping.
