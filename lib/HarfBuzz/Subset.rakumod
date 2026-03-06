@@ -10,6 +10,10 @@ has HarfBuzz::Face() $.face;
 has HarfBuzz::Subset::Input() $.input handles<drop-tables> .= new;
 
 method subset-face handles<Blob> {
-    my hb_face $raw = hb_subset_or_fail($!face.raw, $!input.raw);
-    HarfBuzz::Face.new: :$raw;
+    with hb_subset_or_fail($!face.raw, $!input.raw) -> hb_face $raw {
+        HarfBuzz::Face.new: :$raw;
+    }
+    else {
+        fail "Unable to create subset";
+    }
 }
